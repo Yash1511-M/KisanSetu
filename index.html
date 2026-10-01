@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>KisanSetu</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>🌾 KisanSetu</h1>
+
+    <div class="login-card">
+
+    <div class="logo">🌾</div>
+
+    <h1>KisanSetu</h1>
+
+    <p>किसानों के लिए आसान और स्मार्ट खरीद प्रणाली</p>
+
+    <input 
+        type="tel"
+        placeholder="📱 अपना मोबाइल नंबर डालें"
+    >
+
+    <button onclick="login()">
+        Login →
+    </button>
+
+    <p class="small-text">
+        सुरक्षित • सरल • किसान केंद्रित
+    </p>
+
+</div>
+
+    <script>
+
+        function login() {
+
+            document.body.innerHTML = `
+                <div class="login-card">
+
+    <div class="logo">🌾</div>
+
+    <h1>KisanSetu</h1>
+
+    <h2>भाषा चुनें</h2>
+
+    <p>अपनी पसंदीदा भाषा चुनें</p>
+
+    <button onclick="openDashboard()">
+        🇮🇳 हिंदी
+    </button>
+
+    <button>
+        🇬🇧 English
+    </button>
+
+</div>
+
+            `;
+        }
+
+
+        function openDashboard() {
+
+            document.body.innerHTML = `
+            <div class="app">
+
+    <h1>🌾 KisanSetu</h1>
+
+    <p>नमस्ते किसान भाई 👋</p>
+    <p>आपका स्वागत है</p>
+
+    <hr>
+
+    <button onclick="findCentre()">
+        📍 खरीद केंद्र खोजें
+    </button>
+
+    <button onclick="trackQueue()">
+        🎫 मेरी कतार
+    </button>
+
+    <button onclick="findCentre()">
+        📅 स्लॉट बुक करें
+    </button>
+
+    <button onclick="voiceAssistant()">
+        🎙️ Voice Assistant
+    </button>
+
+    <hr>
+
+    <button onclick="adminDashboard()">
+        🧑‍💼 Admin Dashboard
+    </button>
+
+</div>
+                <h1>🌾 KisanSetu</h1>
+
+                <h2>नमस्ते किसान 👋</h2>
+
+                <p>आप क्या करना चाहते हैं?</p>
+
+                <button onclick="findCentre()">📍 खरीद केंद्र खोजें</button>
+
+                <br><br>
+
+                <button>🎫 मेरी कतार</button>
+
+                <br><br>
+
+                <button>📅 स्लॉट बुक करें</button>
+
+                <br><br>
+
+                <button onclick="voiceAssistant()">🎙️ Voice Assistant</button>
+
+                <button onclick="adminDashboard()">🧑‍💼 Admin Dashboard</button>
+            `;
+        }
+        function adminDashboard() {
+
+    document.body.innerHTML = `
+        <div class="app">
+
+    <h1>🧑‍💼 Admin Dashboard</h1>
+
+    <p>Kanpur Centre 01</p>
+
+    <div class="admin-card">
+
+        <h2>📊 Centre Overview</h2>
+
+        <p>👥 Current Queue: <b>12 Farmers</b></p>
+        <p>🎫 Current Token: <b>A-26</b></p>
+        <p>⏳ Average Waiting: <b>45 min</b></p>
+
+    </div>
+
+    <div class="admin-card">
+
+        <h2>🎫 Next Farmer</h2>
+
+        <p>Token: <b>A-27</b></p>
+        <p>👨‍🌾 Farmer: Ram Kumar</p>
+        <p>🌾 Wheat: <b>185 kg</b></p>
+        <p>💰 Estimated Amount: <b>₹4,625</b></p>
+
+        <button onclick="serveFarmer()">
+            ✅ Serve Farmer
+        </button>
+
+    </div>
+
+    <button onclick="openDashboard()">
+        ⬅️ Back to Dashboard
+    </button>
+
+</div>
+
+    `;
+}
+
+    function serveFarmer() {
+
+    document.body.innerHTML = `
+        <div class="app">
+
+            <h1>✅ Farmer Served</h1>
+
+            <div class="success-card">
+
+                <div class="success-icon">🎫</div>
+
+                <h2>Token A-27</h2>
+
+                <p>👨‍🌾 Farmer: Ram Kumar</p>
+                <p>🌾 Wheat: 185 kg</p>
+                <p>💰 Amount: ₹4,625</p>
+
+                <hr>
+
+                <h3>Procurement process started.</h3>
+
+            </div>
+
+            <button onclick="openDashboard()">
+                🏠 Back to Dashboard
+            </button>
+
+        </div>
+    `;
+}
+
+        function voiceAssistant() {
+
+    document.body.innerHTML = `
+        <h1>🎙️ किसान Voice Assistant</h1>
+
+        <p>नमस्ते! मैं आपकी मदद कर सकता हूँ।</p>
+
+        <hr>
+        <button onclick="startVoice()">🎤 बोलकर पूछें</button>
+
+<p id="voiceText">कुछ बोलिए...</p>
+
+        <h3>आप क्या जानना चाहते हैं?</h3>
+
+        <button onclick="showQueue()">👥 मेरी Queue बताओ</button>
+
+        <br><br>
+
+        <button onclick="showCentre()">📍 खरीद केंद्र बताओ</button>
+
+        <br><br>
+
+        <button onclick="showPayment()">💰 Payment Status</button>
+
+        <br><br>
+
+        <button onclick="openDashboard()">⬅️ Dashboard</button>
+    `;
+}
+function showQueue() {
+    alert("आपसे पहले 12 किसान हैं। अनुमानित समय 45 मिनट है।");
+}
+
+function showCentre() {
+    alert("आपका नज़दीकी केंद्र Kanpur Centre 01 है। दूरी 2.4 km है।");
+}
+
+function showPayment() {
+    alert("आपका payment अभी processing में है।");
+}
+function startVoice() {
+
+    const SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (!SpeechRecognition) {
+        alert("Is browser mein voice recognition supported nahi hai.");
+        return;
+    }
+
+    const recognition = new SpeechRecognition();
+
+    recognition.lang = "hi-IN";
+    recognition.interimResults = false;
+    recognition.continuous = false;
+
+    document.getElementById("voiceText").innerText =
+        "🎤 सुन रहा हूँ...";
+
+    recognition.start();
+
+    recognition.onresult = function(event) {
+
+        const text = event.results[0][0].transcript;
+
+        document.getElementById("voiceText").innerText =
+            "आपने कहा: " + text;
+
+        if (
+            text.includes("queue") ||
+            text.includes("क्यू") ||
+            text.includes("कतार")
+        ) {
+            showQueue();
+        }
+
+        else if (
+            text.includes("center") ||
+            text.includes("केंद्र")
+        ) {
+            showCentre();
+        }
+
+        else if (
+            text.includes("payment") ||
+            text.includes("पेमेंट")
+        ) {
+            showPayment();
+        }
+
+        else {
+            alert("माफ़ कीजिए, मैं यह समझ नहीं पाया।");
+        }
+    };
+
+    recognition.onerror = function(event) {
+        document.getElementById("voiceText").innerText =
+            "❌ Voice error: " + event.error;
+    };
+}
+
+        function findCentre() {
+
+    document.body.innerHTML = `
+        <div class="app">
+
+    <h1>📍 खरीद केंद्र</h1>
+
+    <p>आपके नज़दीकी खरीद केंद्र</p>
+
+    <div class="centre-card">
+        <h2>🏢 Kanpur Centre 01</h2>
+        <p>📏 दूरी: 2.4 km</p>
+        <p>👥 Queue: 12 किसान</p>
+
+        <button onclick="bookSlot()">
+            📅 Book Slot
+        </button>
+    </div>
+
+    <div class="centre-card">
+        <h2>🏢 Kanpur Centre 02</h2>
+        <p>📏 दूरी: 4.1 km</p>
+        <p>👥 Queue: 7 किसान</p>
+
+        <button>
+            📅 Book Slot
+        </button>
+    </div>
+
+    <div class="centre-card">
+        <h2>🏢 Kanpur Centre 03</h2>
+        <p>📏 दूरी: 6.8 km</p>
+        <p>👥 Queue: 19 किसान</p>
+
+        <button>
+            📅 Book Slot
+        </button>
+    </div>
+
+    <button onclick="openDashboard()">
+        ⬅️ Back to Dashboard
+    </button>
+
+</div>
+`;
+}
+function bookSlot() {
+
+    document.body.innerHTML = `
+        <h1>🎫 Slot Booked</h1>
+
+        <p>आपका स्लॉट सफलतापूर्वक बुक हो गया है।</p>
+
+        <hr>
+
+        <h2>🎟️ Token Number: A-27</h2>
+
+        <p>📍 Centre: Kanpur Centre 01</p>
+        <p>⏰ Slot: 10:00 AM - 11:00 AM</p>
+
+        <h3>👥 Current Queue: 12</h3>
+        <button onclick="trackQueue()">📊 Track My Queue</button>
+
+        <button onclick="openDashboard()">⬅️ Dashboard</button>
+    `;
+}
+function trackQueue() {
+
+    document.body.innerHTML = `
+        <div class="app">
+
+    <h1>📊 मेरी Queue</h1>
+
+    <div class="queue-card">
+
+        <h2>🎫 Token A-27</h2>
+
+        <p>📍 Kanpur Centre 01</p>
+
+        <hr>
+
+        <h2>👥 12 किसान आपसे पहले</h2>
+
+        <p>⏳ अनुमानित समय: <b>45 मिनट</b></p>
+
+        <div class="progress-box">
+            <div class="progress"></div>
+        </div>
+
+        <h3>🚜 आपकी बारी जल्द आएगी!</h3>
+
+        <button onclick="procurement()">
+            ⚖️ Procurement
+        </button>
+
+    </div>
+
+    <button onclick="openDashboard()">
+        ⬅️ Dashboard
+    </button>
+
+</div>
+
+    `;
+}
+function procurement() {
+
+    document.body.innerHTML = `
+        <h1>⚖️ अनाज Procurement</h1>
+
+        <p>🎟️ Token: A-27</p>
+        <p>📍 Kanpur Centre 01</p>
+
+        <hr>
+
+        <h2>🌾 गेहूं</h2>
+
+        <p>Quantity: <b>185 kg</b></p>
+        <p>Rate: <b>₹25 / kg</b></p>
+
+        <hr>
+
+        <h2>💰 Total Amount: ₹4,625</h2>
+
+        <button onclick="payment()">💳 Proceed to Payment</button>
+
+        <br><br>
+
+        <button onclick="openDashboard()">⬅️ Dashboard</button>
+    `;
+}
+function payment() {
+
+    document.body.innerHTML = `
+        <div class="app">
+
+    <h1>💰 Payment</h1>
+
+    <div class="queue-card">
+
+        <h2>🌾 Procurement Payment</h2>
+
+        <p>🎫 Token: <b>A-27</b></p>
+        <p>🌾 Wheat: <b>185 kg</b></p>
+
+        <hr>
+
+        <h1>₹4,625</h1>
+
+        <p>🏦 Bank Transfer</p>
+
+        <button onclick="paymentSuccess()">
+            ✅ Confirm Payment
+        </button>
+
+    </div>
+
+    <button onclick="openDashboard()">
+        ⬅️ Dashboard
+    </button>
+
+</div>
+    `;
+}
+function paymentSuccess() {
+
+    document.body.innerHTML = `
+        <div class="app">
+
+    <div class="success-card">
+
+        <div class="success-icon">✅</div>
+
+        <h1>Payment Successful</h1>
+
+        <h2>₹4,625</h2>
+
+        <p>🎫 Token: <b>A-27</b></p>
+        <p>🌾 Wheat: 185 kg</p>
+
+        <hr>
+
+        <p>💳 Amount successfully transferred</p>
+
+        <p>🌾 Procurement completed successfully</p>
+
+    </div>
+
+    <button onclick="openDashboard()">
+        🏠 Back to Dashboard
+    </button>
+
+</div>
+    `;
+}
+
+    </script>
+
+</body>
+</html>
