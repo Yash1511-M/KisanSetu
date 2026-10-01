@@ -33,6 +33,7 @@
 </div>
 
     <script>
+        let currentLang = "hi";
 
         function login() {
 
@@ -47,11 +48,11 @@
 
     <p>अपनी पसंदीदा भाषा चुनें</p>
 
-    <button onclick="openDashboard()">
+    <button onclick="openDashboard('hi')">
         🇮🇳 हिंदी
     </button>
 
-    <button>
+    <button onclick="openDashboard('en')">
         🇬🇧 English
     </button>
 
@@ -61,132 +62,168 @@
         }
 
 
-        function openDashboard() {
+        
 
-            document.body.innerHTML = `
-            <div class="app">
+            function openDashboard(lang = "hi") {
+                currentLang = lang;
+    const english = lang === "en";
 
-    <h1>🌾 KisanSetu</h1>
+    document.body.innerHTML = `
+        <div class="app">
+            <h1>🌾 KisanSetu</h1>
 
-    <p>नमस्ते किसान भाई 👋</p>
-    <p>आपका स्वागत है</p>
+            <p>${english
+                ? "Hello, Farmer! 👋"
+                : "नमस्ते किसान भाई 👋"}</p>
 
-    <hr>
+            <p>${english
+                ? "Welcome to KisanSetu"
+                : "आपका स्वागत है"}</p>
 
-    <button onclick="findCentre()">
-        📍 खरीद केंद्र खोजें
-    </button>
+            <hr>
 
-    <button onclick="trackQueue()">
-        🎫 मेरी कतार
-    </button>
+            <button onclick="findCentre()">
+                📍 ${english ? "Find Procurement Centre" : "खरीद केंद्र खोजें"}
+            </button>
 
-    <button onclick="findCentre()">
-        📅 स्लॉट बुक करें
-    </button>
+            <button onclick="trackQueue()">
+                🎫 ${english ? "My Queue" : "मेरी कतार"}
+            </button>
 
-    <button onclick="voiceAssistant()">
-        🎙️ Voice Assistant
-    </button>
+            <button onclick="findCentre()">
+                📅 ${english ? "Book a Slot" : "स्लॉट बुक करें"}
+            </button>
 
-    <hr>
+            <button onclick="voiceAssistant()">
+                🎙️ Voice Assistant
+            </button>
 
-    <button onclick="adminDashboard()">
-        🧑‍💼 Admin Dashboard
-    </button>
+            <hr>
 
-</div>
-                <h1>🌾 KisanSetu</h1>
+            <button onclick="adminDashboard()">
+                🧑‍💼 Admin Dashboard
+            </button>
+        </div>
+    `;
+            }
 
-                <h2>नमस्ते किसान 👋</h2>
-
-                <p>आप क्या करना चाहते हैं?</p>
-
-                <button onclick="findCentre()">📍 खरीद केंद्र खोजें</button>
-
-                <br><br>
-
-                <button>🎫 मेरी कतार</button>
-
-                <br><br>
-
-                <button>📅 स्लॉट बुक करें</button>
-
-                <br><br>
-
-                <button onclick="voiceAssistant()">🎙️ Voice Assistant</button>
-
-                <button onclick="adminDashboard()">🧑‍💼 Admin Dashboard</button>
-            `;
-        }
-        function adminDashboard() {
+             function findCentre() {
+                
+    const english = currentLang === "en";
 
     document.body.innerHTML = `
         <div class="app">
 
-    <h1>🧑‍💼 Admin Dashboard</h1>
+            <h1>📍 ${english ? "Procurement Centres" : "खरीद केंद्र"}</h1>
 
-    <p>Kanpur Centre 01</p>
+            <p>${english
+                ? "Nearby procurement centres"
+                : "आपके नज़दीकी खरीद केंद्र"}</p>
 
-    <div class="admin-card">
+            <div class="centre-card">
+                <h2>🏢 Kanpur Centre 01</h2>
+                <p>📏 ${english ? "Distance: 2.4 km" : "दूरी: 2.4 km"}</p>
+                <p>👥 ${english ? "Queue: 12 farmers" : "कतार: 12 किसान"}</p>
+                <button onclick="bookSlot()">
+                    📅 ${english ? "Book Slot" : "स्लॉट बुक करें"}
+                </button>
+            </div>
 
-        <h2>📊 Centre Overview</h2>
+            <div class="centre-card">
+                <h2>🏢 Kanpur Centre 02</h2>
+                <p>📏 ${english ? "Distance: 4.1 km" : "दूरी: 4.1 km"}</p>
+                <p>👥 ${english ? "Queue: 7 farmers" : "कतार: 7 किसान"}</p>
+                <button onclick="bookSlot()">
+                    📅 ${english ? "Book Slot" : "स्लॉट बुक करें"}
+                </button>
+            </div>
 
-        <p>👥 Current Queue: <b>12 Farmers</b></p>
-        <p>🎫 Current Token: <b>A-26</b></p>
-        <p>⏳ Average Waiting: <b>45 min</b></p>
+            <div class="centre-card">
+                <h2>🏢 Kanpur Centre 03</h2>
+                <p>📏 ${english ? "Distance: 6.8 km" : "दूरी: 6.8 km"}</p>
+                <p>👥 ${english ? "Queue: 19 farmers" : "कतार: 19 किसान"}</p>
+                <button onclick="bookSlot()">
+                    📅 ${english ? "Book Slot" : "स्लॉट बुक करें"}
+                </button>
+            </div>
 
-    </div>
+            <button onclick="openDashboard(currentLang)">
+                ⬅️ ${english ? "Back to Dashboard" : "डैशबोर्ड पर वापस जाएँ"}
+            </button>
 
-    <div class="admin-card">
-
-        <h2>🎫 Next Farmer</h2>
-
-        <p>Token: <b>A-27</b></p>
-        <p>👨‍🌾 Farmer: Ram Kumar</p>
-        <p>🌾 Wheat: <b>185 kg</b></p>
-        <p>💰 Estimated Amount: <b>₹4,625</b></p>
-
-        <button onclick="serveFarmer()">
-            ✅ Serve Farmer
-        </button>
-
-    </div>
-
-    <button onclick="openDashboard()">
-        ⬅️ Back to Dashboard
-    </button>
-
-</div>
-
+        </div>
     `;
 }
 
-    function serveFarmer() {
+       function adminDashboard() {
+    const english = currentLang === "en";
 
     document.body.innerHTML = `
         <div class="app">
 
-            <h1>✅ Farmer Served</h1>
+            <h1>🧑‍💼 ${english ? "Admin Dashboard" : "एडमिन डैशबोर्ड"}</h1>
+
+            <p>${english ? "Kanpur Centre 01" : "कानपुर केंद्र 01"}</p>
+
+            <div class="admin-card">
+
+                <h2>📊 ${english ? "Centre Overview" : "केंद्र की जानकारी"}</h2>
+
+                <p>👥 ${english ? "Current Queue" : "वर्तमान कतार"}: <b>${english ? "12 Farmers" : "12 किसान"}</b></p>
+                <p>🎫 ${english ? "Current Token" : "वर्तमान टोकन"}: <b>A-26</b></p>
+                <p>⏳ ${english ? "Average Waiting" : "औसत प्रतीक्षा समय"}: <b>${english ? "45 min" : "45 मिनट"}</b></p>
+
+            </div>
+
+            <div class="admin-card">
+
+                <h2>🎫 ${english ? "Next Farmer" : "अगला किसान"}</h2>
+
+                <p>${english ? "Token" : "टोकन"}: <b>A-27</b></p>
+                <p>👨‍🌾 ${english ? "Farmer" : "किसान"}: Ram Kumar</p>
+                <p>🌾 ${english ? "Wheat" : "गेहूं"}: <b>185 kg</b></p>
+                <p>💰 ${english ? "Estimated Amount" : "अनुमानित राशि"}: <b>₹4,625</b></p>
+
+                <button onclick="serveFarmer()">
+                    ✅ ${english ? "Serve Farmer" : "किसान की खरीद पूरी करें"}
+                </button>
+
+            </div>
+
+            <button onclick="openDashboard(currentLang)">
+                ⬅️ ${english ? "Back to Dashboard" : "डैशबोर्ड पर वापस जाएँ"}
+            </button>
+
+        </div>
+    `;
+}
+
+  function serveFarmer() {
+    const english = currentLang === "en";
+
+    document.body.innerHTML = `
+        <div class="app">
+
+            <h1>✅ ${english ? "Farmer Served" : "किसान की खरीद शुरू"}</h1>
 
             <div class="success-card">
 
                 <div class="success-icon">🎫</div>
 
-                <h2>Token A-27</h2>
+                <h2>${english ? "Token" : "टोकन"} A-27</h2>
 
-                <p>👨‍🌾 Farmer: Ram Kumar</p>
-                <p>🌾 Wheat: 185 kg</p>
-                <p>💰 Amount: ₹4,625</p>
+                <p>👨‍🌾 ${english ? "Farmer" : "किसान"}: Ram Kumar</p>
+                <p>🌾 ${english ? "Wheat" : "गेहूं"}: 185 kg</p>
+                <p>💰 ${english ? "Amount" : "राशि"}: ₹4,625</p>
 
                 <hr>
 
-                <h3>Procurement process started.</h3>
+                <h3>${english ? "Procurement process started." : "अनाज खरीदने की प्रक्रिया शुरू हो गई है।"}</h3>
 
             </div>
 
-            <button onclick="openDashboard()">
-                🏠 Back to Dashboard
+            <button onclick="openDashboard(currentLang)">
+                🏠 ${english ? "Back to Dashboard" : "डैशबोर्ड पर वापस जाएँ"}
             </button>
 
         </div>
@@ -294,199 +331,177 @@ function startVoice() {
     };
 }
 
-        function findCentre() {
+      
+function bookSlot() {
+    const english = currentLang === "en";
 
     document.body.innerHTML = `
         <div class="app">
+            <h1>🎫 ${english ? "Slot Booked" : "स्लॉट बुक हो गया"}</h1>
 
-    <h1>📍 खरीद केंद्र</h1>
+            <p>${english
+                ? "Your slot has been booked successfully."
+                : "आपका स्लॉट सफलतापूर्वक बुक हो गया है।"}</p>
 
-    <p>आपके नज़दीकी खरीद केंद्र</p>
+            <hr>
 
-    <div class="centre-card">
-        <h2>🏢 Kanpur Centre 01</h2>
-        <p>📏 दूरी: 2.4 km</p>
-        <p>👥 Queue: 12 किसान</p>
+            <h2>🎟️ ${english ? "Token Number" : "टोकन नंबर"}: A-27</h2>
 
-        <button onclick="bookSlot()">
-            📅 Book Slot
-        </button>
-    </div>
+            <p>📍 ${english ? "Centre" : "केंद्र"}: Kanpur Centre 01</p>
+            <p>⏰ ${english ? "Slot" : "समय"}: 10:00 AM - 11:00 AM</p>
 
-    <div class="centre-card">
-        <h2>🏢 Kanpur Centre 02</h2>
-        <p>📏 दूरी: 4.1 km</p>
-        <p>👥 Queue: 7 किसान</p>
+            <h3>👥 ${english ? "Current Queue" : "वर्तमान कतार"}: 12</h3>
 
-        <button>
-            📅 Book Slot
-        </button>
-    </div>
+            <button onclick="trackQueue()">
+                📊 ${english ? "Track My Queue" : "मेरी कतार देखें"}
+            </button>
 
-    <div class="centre-card">
-        <h2>🏢 Kanpur Centre 03</h2>
-        <p>📏 दूरी: 6.8 km</p>
-        <p>👥 Queue: 19 किसान</p>
-
-        <button>
-            📅 Book Slot
-        </button>
-    </div>
-
-    <button onclick="openDashboard()">
-        ⬅️ Back to Dashboard
-    </button>
-
-</div>
-`;
-}
-function bookSlot() {
-
-    document.body.innerHTML = `
-        <h1>🎫 Slot Booked</h1>
-
-        <p>आपका स्लॉट सफलतापूर्वक बुक हो गया है।</p>
-
-        <hr>
-
-        <h2>🎟️ Token Number: A-27</h2>
-
-        <p>📍 Centre: Kanpur Centre 01</p>
-        <p>⏰ Slot: 10:00 AM - 11:00 AM</p>
-
-        <h3>👥 Current Queue: 12</h3>
-        <button onclick="trackQueue()">📊 Track My Queue</button>
-
-        <button onclick="openDashboard()">⬅️ Dashboard</button>
+            <button onclick="openDashboard(currentLang)">
+                ⬅️ ${english ? "Dashboard" : "डैशबोर्ड"}
+            </button>
+        </div>
     `;
 }
 function trackQueue() {
+    const english = currentLang === "en";
 
     document.body.innerHTML = `
         <div class="app">
 
-    <h1>📊 मेरी Queue</h1>
+            <h1>📊 ${english ? "My Queue" : "मेरी कतार"}</h1>
 
-    <div class="queue-card">
+            <div class="queue-card">
 
-        <h2>🎫 Token A-27</h2>
+                <h2>🎫 Token A-27</h2>
 
-        <p>📍 Kanpur Centre 01</p>
+                <p>📍 Kanpur Centre 01</p>
 
-        <hr>
+                <hr>
 
-        <h2>👥 12 किसान आपसे पहले</h2>
+                <h2>👥 ${english
+                    ? "12 farmers ahead of you"
+                    : "12 किसान आपसे पहले"}</h2>
 
-        <p>⏳ अनुमानित समय: <b>45 मिनट</b></p>
+                <p>⏳ ${english ? "Estimated time" : "अनुमानित समय"}:
+                    <b>${english ? "45 minutes" : "45 मिनट"}</b>
+                </p>
 
-        <div class="progress-box">
-            <div class="progress"></div>
+                <div class="progress-box">
+                    <div class="progress"></div>
+                </div>
+
+                <h3>🚜 ${english
+                    ? "Your turn is coming soon!"
+                    : "आपकी बारी जल्द आएगी!"}</h3>
+
+                <button onclick="procurement()">
+                    ⚖️ ${english ? "Procurement" : "खरीद प्रक्रिया"}
+                </button>
+
+            </div>
+
+            <button onclick="openDashboard(currentLang)">
+                ⬅️ ${english ? "Dashboard" : "डैशबोर्ड"}
+            </button>
+
         </div>
-
-        <h3>🚜 आपकी बारी जल्द आएगी!</h3>
-
-        <button onclick="procurement()">
-            ⚖️ Procurement
-        </button>
-
-    </div>
-
-    <button onclick="openDashboard()">
-        ⬅️ Dashboard
-    </button>
-
-</div>
-
     `;
 }
 function procurement() {
+    const english = currentLang === "en";
 
     document.body.innerHTML = `
-        <h1>⚖️ अनाज Procurement</h1>
+        <div class="app">
+            <h1>⚖️ ${english ? "Grain Procurement" : "अनाज खरीद"}</h1>
 
-        <p>🎟️ Token: A-27</p>
-        <p>📍 Kanpur Centre 01</p>
+            <p>🎟️ ${english ? "Token" : "टोकन"}: A-27</p>
+            <p>📍 Kanpur Centre 01</p>
 
-        <hr>
+            <hr>
 
-        <h2>🌾 गेहूं</h2>
+            <h2>🌾 ${english ? "Wheat" : "गेहूं"}</h2>
 
-        <p>Quantity: <b>185 kg</b></p>
-        <p>Rate: <b>₹25 / kg</b></p>
+            <p>${english ? "Quantity" : "मात्रा"}: <b>185 kg</b></p>
+            <p>${english ? "Rate" : "दर"}: <b>₹25 / kg</b></p>
 
-        <hr>
+            <hr>
 
-        <h2>💰 Total Amount: ₹4,625</h2>
+            <h2>💰 ${english ? "Total Amount" : "कुल राशि"}: ₹4,625</h2>
 
-        <button onclick="payment()">💳 Proceed to Payment</button>
+            <button onclick="payment()">
+                💳 ${english ? "Proceed to Payment" : "भुगतान करें"}
+            </button>
 
-        <br><br>
+            <br><br>
 
-        <button onclick="openDashboard()">⬅️ Dashboard</button>
+            <button onclick="openDashboard(currentLang)">
+                ⬅️ ${english ? "Dashboard" : "डैशबोर्ड"}
+            </button>
+        </div>
     `;
 }
 function payment() {
+    const english = currentLang === "en";
 
     document.body.innerHTML = `
         <div class="app">
+            <h1>💰 ${english ? "Payment" : "भुगतान"}</h1>
 
-    <h1>💰 Payment</h1>
+            <div class="queue-card">
+                <h2>🌾 ${english ? "Procurement Payment" : "अनाज खरीद का भुगतान"}</h2>
 
-    <div class="queue-card">
+                <p>🎫 ${english ? "Token" : "टोकन"}: <b>A-27</b></p>
+                <p>🌾 ${english ? "Wheat" : "गेहूं"}: <b>185 kg</b></p>
 
-        <h2>🌾 Procurement Payment</h2>
+                <hr>
 
-        <p>🎫 Token: <b>A-27</b></p>
-        <p>🌾 Wheat: <b>185 kg</b></p>
+                <h1>₹4,625</h1>
 
-        <hr>
+                <p>🏦 ${english ? "Bank Transfer" : "बैंक ट्रांसफर"}</p>
 
-        <h1>₹4,625</h1>
+                <button onclick="paymentSuccess()">
+                    ✅ ${english ? "Confirm Payment" : "भुगतान की पुष्टि करें"}
+                </button>
+            </div>
 
-        <p>🏦 Bank Transfer</p>
-
-        <button onclick="paymentSuccess()">
-            ✅ Confirm Payment
-        </button>
-
-    </div>
-
-    <button onclick="openDashboard()">
-        ⬅️ Dashboard
-    </button>
-
-</div>
+            <button onclick="openDashboard(currentLang)">
+                ⬅️ ${english ? "Dashboard" : "डैशबोर्ड"}
+            </button>
+        </div>
     `;
 }
 function paymentSuccess() {
+    const english = currentLang === "en";
 
     document.body.innerHTML = `
         <div class="app">
+            <div class="success-card">
 
-    <div class="success-card">
+                <div class="success-icon">✅</div>
 
-        <div class="success-icon">✅</div>
+                <h1>${english ? "Payment Successful" : "भुगतान सफल"}</h1>
 
-        <h1>Payment Successful</h1>
+                <h2>₹4,625</h2>
 
-        <h2>₹4,625</h2>
+                <p>🎫 ${english ? "Token" : "टोकन"}: <b>A-27</b></p>
+                <p>🌾 ${english ? "Wheat" : "गेहूं"}: 185 kg</p>
 
-        <p>🎫 Token: <b>A-27</b></p>
-        <p>🌾 Wheat: 185 kg</p>
+                <hr>
 
-        <hr>
+                <p>💳 ${english
+                    ? "Amount successfully transferred"
+                    : "राशि सफलतापूर्वक ट्रांसफर हो गई"}</p>
 
-        <p>💳 Amount successfully transferred</p>
+                <p>🌾 ${english
+                    ? "Procurement completed successfully"
+                    : "अनाज खरीद सफलतापूर्वक पूरी हुई"}</p>
 
-        <p>🌾 Procurement completed successfully</p>
+            </div>
 
-    </div>
-
-    <button onclick="openDashboard()">
-        🏠 Back to Dashboard
-    </button>
-
-</div>
+            <button onclick="openDashboard(currentLang)">
+                🏠 ${english ? "Back to Dashboard" : "डैशबोर्ड पर वापस जाएँ"}
+            </button>
+        </div>
     `;
 }
 
